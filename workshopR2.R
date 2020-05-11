@@ -78,8 +78,8 @@ ggplot(dat, aes(x = Rich, y = RaoQ, col = FRic)) +
 # Predictors are in a different source file, read it in and join (one of the most useful functions for ex-Excel users)
 
 pred <- read.csv("fishFdGlFactorsFake.csv") #filename means these are made-up predictors
-full <- join(dat, pred, by = "Site", type = "left") # joining column name must be exactly equivalent 
-#in this example, left and full will give identical results, no so if one dataset is shorter
+full <- join(dat, pred, by = "Site", type = "left") # joining column (by) name must be exactly equivalent 
+#in this example, left and full will give identical results, not so if one dataset is shorter
 
 str(full)
 # One-way ANOVA
@@ -95,7 +95,7 @@ summary(fit)
 
 # An aside: learn to create new columns, parse and create new labels
 full$id <- paste(full$lake, full$TP, sep = ".") # create a new ID from lake and TP, separated by .
-# on a second though, I only want the first part of lake's string, and as factor, not as character
+# on a second though, I only want the first part of lake's string
 full$id <- paste(stri_sub(full$lake, 1,2), full$TP, sep = ".") 
 
 fit <- aov(Rich ~ id, dat = full)
@@ -110,7 +110,7 @@ dat2 <- read.csv("species.csv")
 spp <- dat2[,2:66] #subset dataframe to exclude ID and predictors
 env <- dat2[,67:69] #subset dataframe to environmental predictors
 # Remove rare species
-spp2 <- spp[ ,colSums(spp != 0) > 5] # literally: subset dataframe to columns whose sums of values not equal to zero is more than 3
+spp2 <- spp[ ,colSums(spp != 0) > 5] # literally: subset dataframe to columns whose sums of values not equal to zero is more than 5
 
 # Non-metric Multidimensional scaling
 fit <- metaMDS(spp2) 
@@ -142,8 +142,9 @@ ordihull(fit, groups = trt, draw ="polygon", col = col, label = FALSE)
 
 ###################################
 # Part 5. Most common R error codes
+# Note that running this will result in errors. That is the point of this exercise.
 
-# could not find function: whew, package not loaded
+# could not find function: whew, package not loaded, or misspelled
 # object not found: object has not been created, likely misspelled object name
 plot(ft, display = "sites")
 
