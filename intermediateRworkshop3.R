@@ -378,7 +378,7 @@ source("vwReg.R")
 # dat <- read.csv("fishFdGl.csv")
 # setEPS()
 # postscript("fig1new.eps")
-fig1 <- vwReg(FRic ~ Rich, data = x, shade.alpha = 0, slices = 400, 
+fig1 <- vwReg(FRic ~ Rich, data = dat, shade.alpha = 0, slices = 400, 
               palette=colorRampPalette(c("white", "green", "yellow", "blue"), bias = 5)(20))
 fig1 + labs(y = "Functional richness", x="Richness") + 
   theme(panel.grid.major = element_blank(), 
