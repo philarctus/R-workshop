@@ -13,7 +13,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # by going to top menu -> Session -> Set Working Directory -> Choose Directory
 
 # Install and read in required packages
-install.packages(c("reshape2", "stringi", "scales", "stringr", "plyr", "dplyr", "viridis", "ggplot2", "vegan", "Hmisc"))
+# install.packages(c("reshape2", "stringi", "scales", "stringr", "plyr", "dplyr", "viridis", "ggplot2", "vegan", "Hmisc"))
 library(reshape2) # data wrangling
 library(stringi) # string manipulation
 library(stringr) # string manipulation
