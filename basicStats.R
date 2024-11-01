@@ -1,7 +1,7 @@
-# R Workshop Part 2: Basic statistics in R made simple
-# Date: 10/27/2021
+# R Workshop: Basic statistics in R made simple
+# Date: 10/27/2021 updated 11/01/2024
 # author: katya
-# R version 4.0.2 "Taking Off Again"
+# R version 4.1.3 "One Push-up"
 
 ###################################
 # Part 1. Configure the environment
@@ -61,12 +61,14 @@ plot(Rich ~ log(FRic), data = dat) # note that, unlike Excel, default log is bas
 
 # Output results of cross-correlations with p-values as a .csv
 allCoef <- rcorr(as.matrix(dat[,-1]), type = "pearson") # can also do spearman; removing site IDs from dat
-write.csv(unclass(allCoef), "corr.csv") # unclass a list to enable conversion to .csv; here's your list btw
+write.csv(unclass(allCoef), "corr.csv") # unclass a list to enable conversion to .csv
+allCoef # examine object structure to see what coefficients are available
 
 # Multiple Linear Regression (and object re-assignment)
 fit <- lm(Rich ~ FRic + RaoQ, data = dat)
 summary(fit) # NB this over-wrote the previous "fit" object, it is irretrievably lost
 
+# Optional: explore Generalized Additive Models, Quanitle regression
 # Task 1. Test the linear relationship between Sepal.Width and Petal.Width in the iris data
 
 
@@ -110,24 +112,24 @@ fit <- aov(Rich ~ lake, dat = full)
 summary(fit)
 TukeyHSD(fit)
 
-# Two-way ANOVA with interaction effect
+# Two-way ANOVA with an interaction effect
 fit <- aov(Rich ~ lake + TP + lake:TP, dat = full)
 summary(fit) # NB fit is over-written
 
 # ANCoVA
-fit <- aov(Rich ~ lake + FRic, dat = full)
+fit <- aov(Rich ~ lake + FRic, dat = full) # compare to lm()
 summary(fit)
 
 # An aside: learn to create new columns, parse and create new labels
 full$id <- paste(full$lake, full$TP, sep = ".") # create a new ID from lake and TP, separated by .
 
-# on a second though, I only want the first part of lake's string, and as factor, not as character
+# on second though, I only want the first part of lake's string, and as factor, not as character
 full$id <- as.factor(paste(stri_sub(full$lake, 1,2), full$TP, sep = "."))
 fit <- aov(Rich ~ id, dat = full)
 summary(fit)
 
 # Create a quantitative column based on a factor via ifelse statement
-full$concentration<- ifelse(full$TP == "low", 0.5, 3)
+full$concentration<- ifelse(full$TP == "low", 0.5, 3) # create a new concentration column, and, for each row, if TP is "low" assign value 0.5, otherwise assign 3
 summary(full$concentration)
 
 ### ANOVA for each factor level, loops and saving output to text file
