@@ -377,7 +377,7 @@ p + scale_color_viridis(option = "plasma") # add custom color
 
 # D. Bootstrapped function calculates smoothers from 1000 bootstraps followed by calculation of 
 # density estimates for each vertical cut visualized by shade intensity
-# cite as Schönbrodt, F. 2012. Visually weighted/ Watercolor Plots, new variants. 
+# cite as SchÃ¶nbrodt, F. 2012. Visually weighted/ Watercolor Plots, new variants. 
 # http://www.nicebread.de/visually-weighted-watercolor-plots-new-variants-please-vote/)
 
 source("vwReg.R")
