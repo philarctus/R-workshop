@@ -1,7 +1,7 @@
 # R Workshop Part 3: Intermediate R 
-# Nov 2021
+# Nov 2021 updated Nov 2024
 # author: katya
-# R version 4.0.2 "Taking Off Again"
+# R version 4.1.3 "One Push-Up"
 
 # Set working directory to the file location (only RStudio), see workshop 2 if this does not work for you
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
