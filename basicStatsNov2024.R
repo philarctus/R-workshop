@@ -12,9 +12,9 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # manually set working directory by setwd("~/your path"), or, if you don't know the path,
 # by going to top menu -> Session -> Set Working Directory -> Choose Directory
 
-# Install and read in required packages
-install.packages(c("reshape2", "stringi", "scales", "stringr", "plyr", "dplyr", "viridis", "ggplot2", 
-                   "vegan", "Hmisc", "Rcpp"))
+# Install and read in required packages, install only the packages which are not found if you call them below
+# install.packages(c("reshape2", "stringi", "scales", "stringr", "plyr", "dplyr", "viridis", "ggplot2", 
+#                    "vegan", "Hmisc"))
 library(reshape2) # data wrangling
 library(stringi) # string manipulation
 library(stringr) # string manipulation
@@ -25,7 +25,6 @@ library(viridis) # color palette
 library(ggplot2) # plotting
 library(vegan) # ordination
 library(Hmisc) # to generate cross-correlations with p-values
-library(Rcpp)
 
 # Load the file, data from https://doi.org/10.1086/704713
 dat <- read.csv("fishFdGl.csv") # read in a .csv and assign it to an object named dat
@@ -108,6 +107,7 @@ p + scale_color_viridis(option = "plasma") # add custom color
 dev.off() # close off the device if outputting to .pdf; if file is open will give an over-write error
 
 # Let's test this code step by step to understand code testing/debugging
+# tip: implement unit testing
 ggplot(dat, aes(x = Rich, y = RaoQ, col = FRic)) # Empty plot: did not specify what we want plotted, histograms, points 
 
 ggplot(dat, aes(x = Rich, y = RaoQ, col = FRic)) +  
